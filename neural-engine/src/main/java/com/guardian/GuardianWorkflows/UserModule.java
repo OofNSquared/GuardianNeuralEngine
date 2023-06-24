@@ -34,31 +34,31 @@ public class UserModule {
             .keyType(KeyType.HASH)
             .build();
 
-    KeySchemaElement firstNameKeySchemaElement = KeySchemaElement.builder()
-            .attributeName("firstName")
-            .keyType(KeyType.HASH)
-            .build();
+    // KeySchemaElement firstNameKeySchemaElement = KeySchemaElement.builder()
+    //         .attributeName("firstName")
+    //         .keyType(KeyType.HASH)
+    //         .build();
 
-    KeySchemaElement lastNameKeySchemaElement = KeySchemaElement.builder()
-            .attributeName("lastName")
-            .keyType(KeyType.HASH)
-            .build();
+    // KeySchemaElement lastNameKeySchemaElement = KeySchemaElement.builder()
+    //         .attributeName("lastName")
+    //         .keyType(KeyType.HASH)
+    //         .build();
 
-    KeySchemaElement positionKeySchemaElement = KeySchemaElement.builder()
-            .attributeName("position")
-            .keyType(KeyType.RANGE)
-            .build();
+    // KeySchemaElement positionKeySchemaElement = KeySchemaElement.builder()
+    //         .attributeName("position")
+    //         .keyType(KeyType.RANGE)
+    //         .build();
 
-    KeySchemaElement passwordKeySchemaElement = KeySchemaElement.builder()
-            .attributeName("position")
-            .keyType(KeyType.HASH)
-            .build();
+    // KeySchemaElement passwordKeySchemaElement = KeySchemaElement.builder()
+    //         .attributeName("position")
+    //         .keyType(KeyType.HASH)
+    //         .build();
 
     // Define the table
     CreateTableRequest createTableRequest = CreateTableRequest.builder()
             .tableName("User")
             .attributeDefinitions(idAttributeDefinition, emailAttributeDefinition)
-            .keySchema(idKeySchemaElement, emailKeySchemaElement, firstNameKeySchemaElement, lastNameKeySchemaElement, positionKeySchemaElement, passwordKeySchemaElement)
+            .keySchema(idKeySchemaElement, emailKeySchemaElement)
             .provisionedThroughput(
                     ProvisionedThroughput.builder()
                             .readCapacityUnits(5L)
