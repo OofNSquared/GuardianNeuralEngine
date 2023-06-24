@@ -1,6 +1,13 @@
 package com.guardian.GuardianWorkflows;
 
-import software.amazon.awssdk.services.dynamodb.model.*;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
+import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class UserModule {
 
@@ -17,6 +24,16 @@ public class UserModule {
             .build();
 
     // Define the key schema elements
+    KeySchemaElement idKeySchemaElement = KeySchemaElement.builder()
+            .attributeName("ID")
+            .keyType(KeyType.HASH)
+            .build();
+
+    KeySchemaElement idKeySchemaElement = KeySchemaElement.builder()
+            .attributeName("ID")
+            .keyType(KeyType.HASH)
+            .build();
+            
     KeySchemaElement idKeySchemaElement = KeySchemaElement.builder()
             .attributeName("ID")
             .keyType(KeyType.HASH)
