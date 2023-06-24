@@ -1,3 +1,3 @@
 # GuardianNeuralEngine
 
-## Sophia test git push test
+## Sophia test git push testing
