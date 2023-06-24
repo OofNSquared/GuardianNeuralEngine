@@ -29,6 +29,11 @@ public class UserModule {
             .keyType(KeyType.HASH)
             .build();
 
+    KeySchemaElement emailKeySchemaElement = KeySchemaElement.builder()
+            .attributeName("email")
+            .keyType(KeyType.HASH)
+            .build();
+
     KeySchemaElement firstNameKeySchemaElement = KeySchemaElement.builder()
             .attributeName("firstName")
             .keyType(KeyType.HASH)
@@ -53,7 +58,7 @@ public class UserModule {
     CreateTableRequest createTableRequest = CreateTableRequest.builder()
             .tableName("User")
             .attributeDefinitions(idAttributeDefinition, emailAttributeDefinition)
-            .keySchema(idKeySchemaElement, firstNameKeySchemaElement, lastNameKeySchemaElement, positionKeySchemaElement, passwordKeySchemaElement)
+            .keySchema(idKeySchemaElement, emailKeySchemaElement, firstNameKeySchemaElement, lastNameKeySchemaElement, positionKeySchemaElement, passwordKeySchemaElement)
             .provisionedThroughput(
                     ProvisionedThroughput.builder()
                             .readCapacityUnits(5L)
