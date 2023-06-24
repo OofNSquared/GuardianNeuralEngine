@@ -13,7 +13,7 @@ public class UserModule {
 
     public static void main(String[] args) {
 
-    // Define the attribute definitions
+    // Define the attribute definitions, how table is defined and differentiated
     AttributeDefinition idAttributeDefinition = AttributeDefinitiona.builder()
             .attributeName("ID")
             .attributeType(ScalarAttributeType.N)
@@ -23,19 +23,29 @@ public class UserModule {
             .attributeType(ScalarAttributeType.S)
             .build();
 
-    // Define the key schema elements
+    // Define the key schema elements, additional elements
     KeySchemaElement idKeySchemaElement = KeySchemaElement.builder()
             .attributeName("ID")
             .keyType(KeyType.HASH)
             .build();
 
-    KeySchemaElement idKeySchemaElement = KeySchemaElement.builder()
-            .attributeName("ID")
+    KeySchemaElement firstNameKeySchemaElement = KeySchemaElement.builder()
+            .attributeName("firstName")
             .keyType(KeyType.HASH)
             .build();
-            
-    KeySchemaElement idKeySchemaElement = KeySchemaElement.builder()
-            .attributeName("ID")
+
+    KeySchemaElement lastNameKeySchemaElement = KeySchemaElement.builder()
+            .attributeName("lastName")
+            .keyType(KeyType.HASH)
+            .build();
+
+    KeySchemaElement positionKeySchemaElement = KeySchemaElement.builder()
+            .attributeName("position")
+            .keyType(KeyType.RANGE)
+            .build();
+
+    KeySchemaElement passwordKeySchemaElement = KeySchemaElement.builder()
+            .attributeName("position")
             .keyType(KeyType.HASH)
             .build();
 
@@ -43,7 +53,7 @@ public class UserModule {
     CreateTableRequest createTableRequest = CreateTableRequest.builder()
             .tableName("User")
             .attributeDefinitions(idAttributeDefinition, emailAttributeDefinition)
-            .keySchema(idKeySchemaElement)
+            .keySchema(idKeySchemaElement, firstNameKeySchemaElement, lastNameKeySchemaElement, positionKeySchemaElement, passwordKeySchemaElement)
             .provisionedThroughput(
                     ProvisionedThroughput.builder()
                             .readCapacityUnits(5L)
