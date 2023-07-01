@@ -1,5 +1,6 @@
 package com.guardian.GuardianWorkflows;
 
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.*;
 // import software.amazon.awssdk.services.dynamodb.model.AttributeDefinition;
 // import software.amazon.awssdk.services.dynamodb.model.ScalarAttributeType;
@@ -55,6 +56,23 @@ public class UserModule {
     //         .keyType(KeyType.HASH)
     //         .build();
 
+    public static void addUser(DynamoDbClient ddb, int id, String email) {
+
+    }
+
+    public static Map<String, AttributeValue> createUserItem() {
+        Map<String, AttributeValue> item = new HashMap<>();
+        
+        item.put("id", AttributeValue.builder().n("1").build());
+        item.put("email", AttributeValue.builder().s("test@example.com").build());
+        //item.put("first_name", AttributeValue.builder().s("John").build());
+        //item.put("last_name", AttributeValue.builder().s("Doe").build());
+        //item.put("password", AttributeValue.builder().s("password123").build());
+        //item.put("position", AttributeValue.builder().s("Developer").build());
+        
+        return item;
+    }
+
     public UserModule() {
         this.userRequest = createTableRequest;
     }
@@ -79,16 +97,3 @@ public class UserModule {
 
     //System.out.println(createTableRequest);
 }
-
-//     public static Map<String, AttributeValue> createUserItem() {
-//         Map<String, AttributeValue> item = new HashMap<>();
-        
-//         item.put("id", AttributeValue.builder().n("1").build());
-//         item.put("email", AttributeValue.builder().s("test@example.com").build());
-//         item.put("first_name", AttributeValue.builder().s("John").build());
-//         item.put("last_name", AttributeValue.builder().s("Doe").build());
-//         item.put("password", AttributeValue.builder().s("password123").build());
-//         item.put("position", AttributeValue.builder().s("Developer").build());
-        
-//         return item;
-//     }
