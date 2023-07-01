@@ -34,10 +34,7 @@ public class App
     public static void main( String[] args )
     {
 
-        DynamoDbClient dbClient = DynamoDbClient.builder()
-                                    .region(Region.US_WEST_2)
-                                    .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create("AKIAYIRGYU2TMFEVENA5","dJ6thq9mPtx+B0Uqa6NAVXykAErRvebFN7wwcXBX")))
-                                    .build();
+        DynamoDbClient dbClient = DynamoDbClient.create();
 
         UserModule user = new UserModule();
         CreateTableRequest req = user.getUserRequest();

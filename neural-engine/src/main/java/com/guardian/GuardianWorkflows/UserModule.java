@@ -66,8 +66,8 @@ public class UserModule {
     public static HashMap<String, AttributeValue> createUserItem() {
         HashMap<String, AttributeValue> item = new HashMap<>();
         
-        item.put("ID", AttributeValue.builder().n("1").build());
-        item.put("email", AttributeValue.builder().s("test@example.com").build());
+        item.put("ID", AttributeValue.builder().n("2").build());
+        item.put("email", AttributeValue.builder().s("test2@example.com").build());
         //item.put("first_name", AttributeValue.builder().s("John").build());
         //item.put("last_name", AttributeValue.builder().s("Doe").build());
         //item.put("password", AttributeValue.builder().s("password123").build());
