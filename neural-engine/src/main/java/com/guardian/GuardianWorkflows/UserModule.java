@@ -56,8 +56,11 @@ public class UserModule {
     //         .keyType(KeyType.HASH)
     //         .build();
 
-    public static void addUser(DynamoDbClient ddb, int id, String email) {
-
+    public static PutItemRequest addUserRequest(DynamoDbClient ddb, HashMap userItem) {
+        return PutItemRequest.builder()
+                                        .tableName("User")
+                                        .item(userItem)
+                                        .build();
     }
 
     public static Map<String, AttributeValue> createUserItem() {
