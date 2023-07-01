@@ -32,7 +32,7 @@ public class UserModule {
 
     KeySchemaElement emailKeySchemaElement = KeySchemaElement.builder()
             .attributeName("email")
-            .keyType(KeyType.HASH)
+            .keyType(KeyType.RANGE)
             .build();
 
     // KeySchemaElement firstNameKeySchemaElement = KeySchemaElement.builder()
