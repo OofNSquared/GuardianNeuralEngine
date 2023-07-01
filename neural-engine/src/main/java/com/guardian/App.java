@@ -44,19 +44,21 @@ public class App
         DynamoDbWaiter dbWaiter = dbClient.waiter();
         
         try {
-            CreateTableResponse response = dbClient.createTable(req);
-            DescribeTableRequest tableRequest = DescribeTableRequest.builder()
-                    .tableName("User")
-                    .build();
+            // CreateTableResponse response = dbClient.createTable(req);
+            // DescribeTableRequest tableRequest = DescribeTableRequest.builder()
+            //         .tableName("User")
+            //         .build();
 
-            // Wait until the Amazon DynamoDB table is created
-            WaiterResponse<DescribeTableResponse> waiterResponse =  dbWaiter.waitUntilTableExists(tableRequest);
-            waiterResponse.matched().response().ifPresent(System.out::println);
+            // // Wait until the Amazon DynamoDB table is created
+            // WaiterResponse<DescribeTableResponse> waiterResponse =  dbWaiter.waitUntilTableExists(tableRequest);
+            // waiterResponse.matched().response().ifPresent(System.out::println);
 
-            String newTable = response.tableDescription().tableName();
-            System.out.println(newTable);
+            // String newTable = response.tableDescription().tableName();
+            // System.out.println(newTable);
+            dbClient.putItem(UserModule.addUserRequest(UserModule.createUserItem()));
+            System.out.println("Added successfully!");
 
-        } catch (DynamoDbException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             System.exit(1);
         }
