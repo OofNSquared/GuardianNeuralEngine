@@ -1,5 +1,7 @@
 package com.guardian;
 
+import software.amazon.awssdk.services.dynamodb.model.*;
+
 /**
  * Hello world!
  *

@@ -1,18 +1,18 @@
 package com.guardian.GuardianWorkflows;
 
-import software.amazon.awssdk.services.dynamodb.model.CreateTableRequest;
-import software.amazon.awssdk.services.dynamodb.model.AttributeDefinition;
-import software.amazon.awssdk.services.dynamodb.model.ScalarAttributeType;
-import software.amazon.awssdk.services.dynamodb.model.KeySchemaElement;
-import software.amazon.awssdk.services.dynamodb.model.ProvisionedThroughput;
-import software.amazon.awssdk.services.dynamodb.model.KeyType;
 import software.amazon.awssdk.services.dynamodb.model.*;
+// import software.amazon.awssdk.services.dynamodb.model.AttributeDefinition;
+// import software.amazon.awssdk.services.dynamodb.model.ScalarAttributeType;
+// import software.amazon.awssdk.services.dynamodb.model.KeySchemaElement;
+// import software.amazon.awssdk.services.dynamodb.model.KeyType;
+// import software.amazon.awssdk.services.dynamodb.model.CreateTableRequest;
+// import software.amazon.awssdk.services.dynamodb.model.ProvisionedThroughput;
 import java.util.HashMap;
 import java.util.Map;
 
 public class UserModule {
 
-    public static void main(String[] args) {
+        private CreateTableRequest userRequest;
 
     // Define the attribute definitions, how table is defined and differentiated
     AttributeDefinition idAttributeDefinition = AttributeDefinition.builder()
@@ -55,6 +55,14 @@ public class UserModule {
     //         .keyType(KeyType.HASH)
     //         .build();
 
+    public UserModule() {
+        this.userRequest = createTableRequest;
+    }
+
+    public CreateTableRequest getUserRequest() {
+        return this.userRequest;
+    }
+
     // Define the table
     CreateTableRequest createTableRequest = CreateTableRequest.builder()
             .tableName("User")
@@ -68,20 +76,19 @@ public class UserModule {
             )
             .build();
 
-    System.out.println(createTableRequest);
-    }
 
-    public static Map<String, AttributeValue> createUserItem() {
-        Map<String, AttributeValue> item = new HashMap<>();
-        
-        item.put("id", AttributeValue.builder().n("1").build());
-        item.put("email", AttributeValue.builder().s("test@example.com").build());
-        item.put("first_name", AttributeValue.builder().s("John").build());
-        item.put("last_name", AttributeValue.builder().s("Doe").build());
-        item.put("password", AttributeValue.builder().s("password123").build());
-        item.put("position", AttributeValue.builder().s("Developer").build());
-        
-        return item;
-    }
-
+    //System.out.println(createTableRequest);
 }
+
+//     public static Map<String, AttributeValue> createUserItem() {
+//         Map<String, AttributeValue> item = new HashMap<>();
+        
+//         item.put("id", AttributeValue.builder().n("1").build());
+//         item.put("email", AttributeValue.builder().s("test@example.com").build());
+//         item.put("first_name", AttributeValue.builder().s("John").build());
+//         item.put("last_name", AttributeValue.builder().s("Doe").build());
+//         item.put("password", AttributeValue.builder().s("password123").build());
+//         item.put("position", AttributeValue.builder().s("Developer").build());
+        
+//         return item;
+//     }
