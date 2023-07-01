@@ -1,29 +1,19 @@
 package com.guardian.GuardianWorkflows;
 
-import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.core.waiters.WaiterResponse;
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.dynamodb.model.CreateTableRequest;
-import software.amazon.awssdk.services.dynamodb.model.AttributeDefinition;
-import software.amazon.awssdk.services.dynamodb.model.ScalarAttributeType;
-import software.amazon.awssdk.services.dynamodb.model.ScalarAttributeType;
-import software.amazon.awssdk.services.dynamodb.model.KeySchemaElement;
-import software.amazon.awssdk.services.dynamodb.model.ProvisionedThroughput;
-import software.amazon.awssdk.services.dynamodb.model.KeyType;
-import software.amazon.awssdk.services.dynamodb.model.CreateTableResponse;
-import software.amazon.awssdk.services.dynamodb.model.DescribeTableRequest;
-import software.amazon.awssdk.services.dynamodb.model.DescribeTableResponse;
-import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
-import software.amazon.awssdk.services.dynamodb.waiters.DynamoDbWaiter;
+import software.amazon.awssdk.services.dynamodb.model.*;
+// import software.amazon.awssdk.services.dynamodb.model.AttributeDefinition;
+// import software.amazon.awssdk.services.dynamodb.model.ScalarAttributeType;
+// import software.amazon.awssdk.services.dynamodb.model.KeySchemaElement;
+// import software.amazon.awssdk.services.dynamodb.model.KeyType;
+// import software.amazon.awssdk.services.dynamodb.model.CreateTableRequest;
+// import software.amazon.awssdk.services.dynamodb.model.ProvisionedThroughput;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class UserModule {
 
-    public static void main(String[] args) {
+        private CreateTableRequest userRequest;
 
     // Define the attribute definitions, how table is defined and differentiated
     AttributeDefinition idAttributeDefinition = AttributeDefinition.builder()
@@ -43,7 +33,7 @@ public class UserModule {
 
     KeySchemaElement emailKeySchemaElement = KeySchemaElement.builder()
             .attributeName("email")
-            .keyType(KeyType.HASH)
+            .keyType(KeyType.RANGE)
             .build();
 
     // KeySchemaElement firstNameKeySchemaElement = KeySchemaElement.builder()
@@ -66,6 +56,34 @@ public class UserModule {
     //         .keyType(KeyType.HASH)
     //         .build();
 
+    public static PutItemRequest addUserRequest(HashMap userItem) {
+        return PutItemRequest.builder()
+                                        .tableName("User")
+                                        .item(userItem)
+                                        .build();
+    }
+
+    public static HashMap<String, AttributeValue> createUserItem() {
+        HashMap<String, AttributeValue> item = new HashMap<>();
+        
+        item.put("ID", AttributeValue.builder().n("2").build());
+        item.put("email", AttributeValue.builder().s("test2@example.com").build());
+        //item.put("first_name", AttributeValue.builder().s("John").build());
+        //item.put("last_name", AttributeValue.builder().s("Doe").build());
+        //item.put("password", AttributeValue.builder().s("password123").build());
+        //item.put("position", AttributeValue.builder().s("Developer").build());
+        
+        return item;
+    }
+
+    public UserModule() {
+        this.userRequest = createTableRequest;
+    }
+
+    public CreateTableRequest getUserRequest() {
+        return this.userRequest;
+    }
+
     // Define the table
     CreateTableRequest createTableRequest = CreateTableRequest.builder()
             .tableName("User")
@@ -79,20 +97,6 @@ public class UserModule {
             )
             .build();
 
-    System.out.println(createTableRequest);
-    }
 
-    public static Map<String, AttributeValue> createUserItem() {
-        Map<String, AttributeValue> item = new HashMap<>();
-        
-        item.put("id", AttributeValue.builder().n("1").build());
-        item.put("email", AttributeValue.builder().s("test@example.com").build());
-        item.put("first_name", AttributeValue.builder().s("John").build());
-        item.put("last_name", AttributeValue.builder().s("Doe").build());
-        item.put("password", AttributeValue.builder().s("password123").build());
-        item.put("position", AttributeValue.builder().s("Developer").build());
-        
-        return item;
-    }
-
+    //System.out.println(createTableRequest);
 }
