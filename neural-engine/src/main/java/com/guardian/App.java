@@ -1,6 +1,11 @@
 package com.guardian;
 
-import software.amazon.awssdk.services.dynamodb.model.*;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClientBuilder;
+
+import static software.amazon.awssdk.services.dynamodb.DynamoDbClient.*;
+
+//import software.amazon.awssdk.services.dynamodb.*;
 
 /**
  * Hello world!
@@ -10,6 +15,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        DynamoDbClient dbClient = DynamoDbClient.create();
     }
 }
