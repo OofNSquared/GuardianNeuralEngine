@@ -19,6 +19,7 @@ import software.amazon.awssdk.regions.Region;
 //import static software.amazon.awssdk.services.dynamodb.DynamoDbClient.*;
 
 import com.guardian.GuardianWorkflows.UserModule;
+import com.guardian.GuardianWorkflows.userworkflows.CreateNewUserRequest;
 
 // import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 // import software.amazon.awssdk.regions.Region;
@@ -52,7 +53,8 @@ public class App
 
             // String newTable = response.tableDescription().tableName();
             // System.out.println(newTable);
-            dbClient.putItem(UserModule.addUserRequest(UserModule.createUserItem()));
+            CreateNewUserRequest user4CreateRequest = new CreateNewUserRequest(4, "test4@example.com");
+            dbClient.putItem(UserModule.addUserRequest(user4CreateRequest.request()));
             System.out.println("Added successfully!");
 
         } catch (Exception e) {

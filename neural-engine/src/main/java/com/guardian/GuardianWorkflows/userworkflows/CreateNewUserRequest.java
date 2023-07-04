@@ -6,22 +6,21 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 public class CreateNewUserRequest {
 
-    private String id;
+    private int id;
     private String email;
 
 
-    public CreateNewUserRequest(String id, String email) {
-        if (isNullOrBlank(id) | isNullOrBlank(email)) throw new IllegalArgumentException("id and email cannot be null or blank");
+    public CreateNewUserRequest(int id, String email) {
+        if (isNullOrBlank(email)) throw new IllegalArgumentException("email cannot be null or blank");
         this.id = id;
         this.email = email;
     }
 
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
-        if (isNullOrBlank(id)) throw new IllegalArgumentException("id cannot be null or blank");
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -42,7 +41,7 @@ public class CreateNewUserRequest {
     public HashMap<String, AttributeValue> request() {
         HashMap<String, AttributeValue> request = new HashMap<>();
         
-        request.put("ID", AttributeValue.builder().n(this.id).build());
+        request.put("ID", AttributeValue.builder().n(String.valueOf(this.id)).build());
         request.put("email", AttributeValue.builder().s(this.email).build());
         //request.put("first_name", AttributeValue.builder().s("John").build());
         //request.put("last_name", AttributeValue.builder().s("Doe").build());
