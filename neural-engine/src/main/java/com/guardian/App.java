@@ -53,8 +53,8 @@ public class App
 
             // String newTable = response.tableDescription().tableName();
             // System.out.println(newTable);
-            CreateNewUserRequest user4CreateRequest = new CreateNewUserRequest(4, "test4@example.com");
-            dbClient.putItem(UserModule.addUserRequest(user4CreateRequest.request()));
+            CreateNewUserRequest user5CreateRequest = new CreateNewUserRequest(4, "test4@example.com");
+            dbClient.putItem(user5CreateRequest.request());
             System.out.println("Added successfully!");
 
             dbClient.updateI

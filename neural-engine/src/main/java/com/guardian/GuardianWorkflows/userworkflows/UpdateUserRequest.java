@@ -46,11 +46,13 @@ public class UpdateUserRequest {
                                 .build();
     }
     
-    public HashMap<String, AttributeValue> getKeyMap() {
+    private HashMap<String, AttributeValue> getKeyMap() {
         HashMap<String, AttributeValue> keyToGet = new HashMap<String, AttributeValue>();
         keyToGet.put("ID", AttributeValue.builder().n(String.valueOf(this.id)).build());
         keyToGet.put("email", AttributeValue.builder().s(this.email).build());
         return keyToGet;
     }
+
+    p
 
 }

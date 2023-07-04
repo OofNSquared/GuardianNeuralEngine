@@ -56,13 +56,6 @@ public class UserModule {
     //         .keyType(KeyType.HASH)
     //         .build();
 
-    public static PutItemRequest addUserRequest(HashMap userItem) {
-        return PutItemRequest.builder()
-                                        .tableName("User")
-                                        .item(userItem)
-                                        .build();
-    }
-
     public static GetItemRequest getUserRequest(HashMap keyItem) {
         return GetItemRequest.builder()
                                 .tableName("User")
