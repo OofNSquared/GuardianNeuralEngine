@@ -81,7 +81,7 @@ public class CreateNewUserRequest {
         return (str == null || str.isBlank());
     }
 
-    public PutItemRequest request(String firstName, String lastName, String password, String position) {
+    public PutItemRequest request() {
         HashMap<String, AttributeValue> request = new HashMap<>();
         
         request.put("ID", AttributeValue.builder().n(String.valueOf(this.id)).build());
