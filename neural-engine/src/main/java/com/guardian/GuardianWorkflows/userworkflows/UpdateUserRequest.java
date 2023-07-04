@@ -7,7 +7,7 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.UpdateItemRequest;
 
-public class UpdateUserRequest {
+public class UpdateUserRequest extends UserRequests {
 
     // FOR NOW, CAN ONLY UPDATE PASSWORD AND POSITION
     private int id;
@@ -16,9 +16,8 @@ public class UpdateUserRequest {
     private String newPosition;
 
     public UpdateUserRequest(int id, String email, String newPassword, String newPosition) {
-        if (isNullOrBlank(email) || isNullOrBlank(newPassword) || isNullOrBlank(newPosition)) throw new IllegalArgumentException("fields cannot be null or blank");
-        this.id = id;
-        this.email = email;
+        super(id, email);
+        if (isNullOrBlank(newPassword) || isNullOrBlank(newPosition)) throw new IllegalArgumentException("fields cannot be null or blank");
         this.newPassword = newPassword;
         this.newPosition = newPosition;
     }
@@ -58,11 +57,6 @@ public class UpdateUserRequest {
         this.newPosition = newPosition;
     }
 
-
-    private boolean isNullOrBlank(String str) {
-        return (str == null || str.isBlank());
-    }
-
     public UpdateItemRequest request() {
         HashMap<String, String> attributeNames = new HashMap<String, String>();
         attributeNames.put("#P", "position");
@@ -74,18 +68,11 @@ public class UpdateUserRequest {
 
         return UpdateItemRequest.builder()
                                 .tableName("User")
-                                .key(this.getKeyMap())
+                                .key(super.getKeyMap())
                                 .updateExpression(this.updateExpressionString())
                                 .expressionAttributeNames(attributeNames)
                                 .expressionAttributeValues(attributeValues)
                                 .build();
-    }
-    
-    private HashMap<String, AttributeValue> getKeyMap() {
-        HashMap<String, AttributeValue> keyToGet = new HashMap<String, AttributeValue>();
-        keyToGet.put("ID", AttributeValue.builder().n(String.valueOf(this.id)).build());
-        keyToGet.put("email", AttributeValue.builder().s(this.email).build());
-        return keyToGet;
     }
 
     private String updateExpressionString() {
