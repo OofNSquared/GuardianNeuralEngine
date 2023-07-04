@@ -57,6 +57,8 @@ public class App
             dbClient.putItem(UserModule.addUserRequest(user4CreateRequest.request()));
             System.out.println("Added successfully!");
 
+            dbClient.updateI
+
         } catch (Exception e) {
             System.err.println(e.getMessage());
             System.exit(1);

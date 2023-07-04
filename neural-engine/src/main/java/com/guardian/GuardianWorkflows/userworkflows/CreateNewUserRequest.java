@@ -38,15 +38,15 @@ public class CreateNewUserRequest {
     }
 
 
-    public HashMap<String, AttributeValue> request() {
+    public HashMap<String, AttributeValue> request(String firstName, String lastName, String password, String position) {
         HashMap<String, AttributeValue> request = new HashMap<>();
         
         request.put("ID", AttributeValue.builder().n(String.valueOf(this.id)).build());
         request.put("email", AttributeValue.builder().s(this.email).build());
-        //request.put("first_name", AttributeValue.builder().s("John").build());
-        //request.put("last_name", AttributeValue.builder().s("Doe").build());
-        //request.put("password", AttributeValue.builder().s("password123").build());
-        //request.put("position", AttributeValue.builder().s("Developer").build());
+        request.put("first_name", AttributeValue.builder().s(firstName).build());
+        request.put("last_name", AttributeValue.builder().s(lastName).build());
+        request.put("password", AttributeValue.builder().s(password).build());
+        request.put("position", AttributeValue.builder().s(position).build());
         
         return request;
     }
