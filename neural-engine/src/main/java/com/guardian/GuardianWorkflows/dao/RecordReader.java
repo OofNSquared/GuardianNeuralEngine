@@ -9,6 +9,6 @@ import java.util.Optional;
  * @param <K> Key Type
  */
 public interface RecordReader<T, K> {
-    Optional<T> read(K key);
-    List<T> readKeys(List<K> keys);
+    public Optional<T> read(K key);
+    public List<T> readKeys(List<K> keys);
 }

@@ -20,6 +20,7 @@ import software.amazon.awssdk.regions.Region;
 
 import com.guardian.GuardianWorkflows.UserModule;
 import com.guardian.GuardianWorkflows.userworkflows.CreateNewUserRequest;
+import com.guardian.GuardianWorkflows.userworkflows.UpdateUserRequest;
 
 // import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 // import software.amazon.awssdk.regions.Region;
@@ -53,9 +54,13 @@ public class App
 
             // String newTable = response.tableDescription().tableName();
             // System.out.println(newTable);
-            CreateNewUserRequest user4CreateRequest = new CreateNewUserRequest(4, "test4@example.com");
-            dbClient.putItem(UserModule.addUserRequest(user4CreateRequest.request()));
-            System.out.println("Added successfully!");
+            // CreateNewUserRequest user5CreateRequest = new CreateNewUserRequest(5, "test5@example.com", "Jane", "Doe", "password2023", "Engineer");
+            // dbClient.putItem(user5CreateRequest.request());
+            // System.out.println("Added successfully!");
+
+            UpdateUserRequest user5UpdateRequest = new UpdateUserRequest(5, "test5@example.com", "weak_password", "Manager");
+            dbClient.updateItem(user5UpdateRequest.request());
+            System.out.println("User updated successfully!");
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
