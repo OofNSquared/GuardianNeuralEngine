@@ -63,7 +63,7 @@ public class App
             // dbClient.updateItem(user5UpdateRequest.request());
             // System.out.println("User updated successfully!");
 
-            DeleteUserRequest user2DeleteUserRequest = new DeleteUserRequest(2, "test2@example.com");
+            DeleteUserRequest user2DeleteUserRequest = new DeleteUserRequest(5, "test5@example.com");
             dbClient.deleteItem(user2DeleteUserRequest.request());
             System.out.println("User deleted!");
 
