@@ -20,6 +20,7 @@ import software.amazon.awssdk.regions.Region;
 
 import com.guardian.GuardianWorkflows.UserModule;
 import com.guardian.GuardianWorkflows.userworkflows.CreateNewUserRequest;
+import com.guardian.GuardianWorkflows.userworkflows.DeleteUserRequest;
 import com.guardian.GuardianWorkflows.userworkflows.UpdateUserRequest;
 
 // import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
@@ -58,9 +59,13 @@ public class App
             // dbClient.putItem(user5CreateRequest.request());
             // System.out.println("Added successfully!");
 
-            UpdateUserRequest user5UpdateRequest = new UpdateUserRequest(5, "test5@example.com", "weak_password", "Manager");
-            dbClient.updateItem(user5UpdateRequest.request());
-            System.out.println("User updated successfully!");
+            // UpdateUserRequest user5UpdateRequest = new UpdateUserRequest(5, "test5@example.com", "weak_password", "Manager");
+            // dbClient.updateItem(user5UpdateRequest.request());
+            // System.out.println("User updated successfully!");
+
+            DeleteUserRequest user2DeleteUserRequest = new DeleteUserRequest(2, "test2@example.com");
+            dbClient.deleteItem(user2DeleteUserRequest.request());
+            System.out.println("User deleted!");
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
