@@ -1,6 +1,7 @@
 package com.guardian.GuardianWorkflows.userworkflows;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
@@ -18,6 +19,8 @@ public class UpdateUserRequest {
         if (isNullOrBlank(email) || isNullOrBlank(newPassword) || isNullOrBlank(newPosition)) throw new IllegalArgumentException("fields cannot be null or blank");
         this.id = id;
         this.email = email;
+        this.newPassword = newPassword;
+        this.newPosition = newPosition;
     }
 
     public int getId() {
@@ -61,10 +64,20 @@ public class UpdateUserRequest {
     }
 
     public UpdateItemRequest request() {
+        HashMap<String, String> attributeNames = new HashMap<String, String>();
+        attributeNames.put("#P", "position");
+        attributeNames.put("#password", "password");
+
+        HashMap<String, AttributeValue> attributeValues = new HashMap<String, AttributeValue>();
+        attributeValues.put(":password", AttributeValue.builder().s(this.newPassword).build());
+        attributeValues.put(":position", AttributeValue.builder().s(this.newPosition).build());
+
         return UpdateItemRequest.builder()
                                 .tableName("User")
                                 .key(this.getKeyMap())
                                 .updateExpression(this.updateExpressionString())
+                                .expressionAttributeNames(attributeNames)
+                                .expressionAttributeValues(attributeValues)
                                 .build();
     }
     
@@ -76,7 +89,7 @@ public class UpdateUserRequest {
     }
 
     private String updateExpressionString() {
-        return "SET: password=:" + this.newPassword + ", position=:" + this.newPosition;
+        return "SET #password=:password, #P=:position";
     }
 
 }

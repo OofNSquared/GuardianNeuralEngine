@@ -54,12 +54,13 @@ public class App
 
             // String newTable = response.tableDescription().tableName();
             // System.out.println(newTable);
-            CreateNewUserRequest user5CreateRequest = new CreateNewUserRequest(5, "test5@example.com", "Jane", "Doe", "password2023", "Engineer");
-            dbClient.putItem(user5CreateRequest.request());
-            System.out.println("Added successfully!");
+            // CreateNewUserRequest user5CreateRequest = new CreateNewUserRequest(5, "test5@example.com", "Jane", "Doe", "password2023", "Engineer");
+            // dbClient.putItem(user5CreateRequest.request());
+            // System.out.println("Added successfully!");
 
-            // UpdateUserRequest user5UpdateRequest = new UpdateUserRequest(5, "test5@example.com", "weak_password", "Manager");
-            // dbClient.updateItem(user5UpdateRequest.request());
+            UpdateUserRequest user5UpdateRequest = new UpdateUserRequest(5, "test5@example.com", "weak_password", "Manager");
+            dbClient.updateItem(user5UpdateRequest.request());
+            System.out.println("User updated successfully!");
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
