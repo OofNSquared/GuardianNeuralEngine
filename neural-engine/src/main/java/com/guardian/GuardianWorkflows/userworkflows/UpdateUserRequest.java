@@ -57,6 +57,7 @@ public class UpdateUserRequest extends UserRequests {
         this.newPosition = newPosition;
     }
 
+    @Override
     public UpdateItemRequest request() {
         HashMap<String, String> attributeNames = new HashMap<String, String>();
         attributeNames.put("#P", "position");
