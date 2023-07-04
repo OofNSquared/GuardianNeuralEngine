@@ -5,7 +5,7 @@ import java.util.HashMap;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
 
-public class CreateNewUserRequest {
+public class CreateNewUserRequest extends UserRequests {
 
     private int id;
     private String email;
@@ -15,9 +15,8 @@ public class CreateNewUserRequest {
     private String position;
 
     public CreateNewUserRequest(int id, String email, String firstName, String lastName, String password, String position) {
-        if (isNullOrBlank(email) || isNullOrBlank(firstName) || isNullOrBlank(lastName) || isNullOrBlank(password) || isNullOrBlank(position)) throw new IllegalArgumentException("no entries can be null or blank");
-        this.id = id;
-        this.email = email;
+        super(id, email);
+        if (this.fieldsMissingEntries()) throw new IllegalArgumentException("entries cannot be null or blank");
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -77,10 +76,11 @@ public class CreateNewUserRequest {
         this.position = position;
     }
 
-    private boolean isNullOrBlank(String str) {
-        return (str == null || str.isBlank());
+    private boolean fieldsMissingEntries() {
+        return isNullOrBlank(firstName) || isNullOrBlank(lastName) || isNullOrBlank(password) || isNullOrBlank(position);
     }
 
+    @Override
     public PutItemRequest request() {
         HashMap<String, AttributeValue> request = new HashMap<>();
         
