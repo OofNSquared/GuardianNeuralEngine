@@ -34,7 +34,7 @@ public abstract class UserRequests {
         this.email = email;
     }
 
-    private boolean isNullOrBlank(String str) {
+    public boolean isNullOrBlank(String str) {
         return (str == null || str.isBlank());
     }
 
